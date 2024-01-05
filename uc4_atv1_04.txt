@@ -1,0 +1,34 @@
+
+
+4) Elabore um plano de backups regular, montando um script de servidor Linux para rodar periodicamente (especifique o período) ou um agendamento usando uma ferramenta automatizada.
+
+(FIZ UM BACKUP DE SERVIDOR WINDOWS , QUE É O QUE UTILIZO)
+
+--Conforme Solicitado, diminui a frequencia para que o backup seja realizado a cada 3 dias e assim evite problemas maiores caso venha a acontecer um novo incidente.
+
+
+setlocal
+
+rem Definir as configurações de backup
+set Destino=\\caminho\do\backup
+set Rotulo=BackupServidor
+set Agendamento=3
+
+rem Verificar se o destino do backup existe
+if not exist %Destino% (
+    echo O destino do backup não foi encontrado. Verifique o caminho de destino.
+    exit /b 1
+)
+
+rem Executar o backup
+echo Executando o backup...
+wbadmin start backup -backuptarget:%Destino% -include:C:\ -label:%Rotulo% -vssfull -schedule:%Agendamento%
+
+rem Verificar o código de retorno do comando wbadmin
+if %errorlevel% neq 0 (
+    echo Ocorreu um erro ao executar o backup. Código de retorno: %errorlevel%.
+    exit /b %errorlevel%
+)
+
+echo Backup concluído com sucesso.
+exit /b 0

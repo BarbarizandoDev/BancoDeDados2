@@ -1,0 +1,56 @@
+
+1. Criação de um novo banco NoSQL:
+
+) use loja
+switched to db loja;
+
+-- Pelo o que pesquisei como se trata de uma interface intuitiva , não é necessario utilizar especificamente os comandos acima, outra opção é seguir os seguintes passos:
+1-Abra o MongoDB Compass e clique em "Criar Banco de Dados" na página inicial.
+2-Insira o nome desejado para o novo banco de dados no campo "Nome do Banco de Dados".
+3-Escolha as opções de configuração desejadas, como a codificação de caracteres e a replicação.
+4-Clique em "Criar Banco de Dados" para criar o novo banco de dados.
+
+
+
+2.Inclusão dos dados presentes na tabela “funcionario” do banco de dados SQL usado nas atividades (Observe os relacionamentos dessa tabela com “cargo” e “usuario”.)
+
+-- Usei o comando insertMany e criar um objeto para cada documento com os respectivos campos:
+
+db.funcionario.insertMany([
+   { nome: "Sílvio Cortês", telefone: "99 7898-1234", cpf: "84537768061", cargo_id: 2, usuario_id: 4 },
+   { nome: "Amaro Valadão", telefone: "99 7534-1234", cpf: "03074142057", cargo_id: 2, usuario_id: 5 },
+   { nome: "Marcos Valadão", telefone: "99 7534-7897", cpf: "40967947081", cargo_id: 2, usuario_id: 6 },
+   { nome: "Domingas Souza Sá", telefone: "99 7534-1234", cpf: "51077408048", cargo_id: 4, usuario_id: 7 },
+   { nome: "Marina Frazão", telefone: "99 7589-1854", cpf: "21788502000", cargo_id: 1, usuario_id: 8 },
+   { nome: "Joana Freitas", telefone: "99 7589-7534", cpf: "85690938025", cargo_id: 3, usuario_id: 9 },
+   { nome: "Aparício Dias", telefone: "99 7514-7884", cpf: "14131448025", cargo_id: 3, usuario_id: 10 },
+   { nome: "Filomena da Luz", telefone: "99 7584-7884", cpf: "19641782070", cargo_id: 5, usuario_id: 11 }
+]);
+
+
+
+3. Atualização de dados de “funcionario” (qualquer campo de sua preferência):
+
+-- Usei o comando updateOne para atualizar o telefone do funcionário com cpf igual a "84537768061" para "99 9876-5432".
+
+db.funcionario.updateOne(
+   { cpf: "84537768061" },
+   { $set: { telefone: "99 9876-5432" } }
+)
+
+
+
+4. Busca de funcionário por nome:
+
+-- Usei o comando findOne para buscar o funcionário por nome.o primeiro documento que possui o campo nome igual ao pedido, retorna com sucesso . 
+
+db.funcionario.findOne({ nome: "Joana Freitas" })
+
+
+5. Busca de funcionário por cargo:
+
+--usei um comando find com um filtro que corresponda ao campo cargo_id. 
+
+db.funcionario.find({ cargo_id: 2 })
+
+ 
