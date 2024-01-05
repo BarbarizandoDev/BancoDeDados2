@@ -1,0 +1,2 @@
+# BancoDeDados2
+ Aqui constam trabalhos feitos na minha unidade curricular de Administração de BD . onde trabalhei mais profundamente os fundamentos , criando BD para Ecommerce , supermercado e tambem conhecendo outras tecnologias para alem do SQL Server, como Mongo , NoSQL, MySQL , PostgreSQL E Oracle . Confesso que gostei bastante da area e foi onde posso dizer que comecei a ter outra visão da tecnologia.
